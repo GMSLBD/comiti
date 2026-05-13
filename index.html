@@ -1,0 +1,814 @@
+```html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>কমিটি ডিরেক্টরি | আপডেটেড তালিকা</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', 'Segoe UI', 'Roboto', 'Noto Sans Bengali', system-ui, sans-serif;
+      background: linear-gradient(145deg, #eef2f7 0%, #e2e9ef 100%);
+      color: #1a2f3c;
+      min-height: 100vh;
+    }
+    .navbar {
+      background: linear-gradient(95deg, #0a2f2a 0%, #1a6b53 100%);
+      padding: 0.8rem 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .home-btn {
+      background: #f7c35c;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      color: #1f4a3b;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .home-btn:hover {
+      background: #ffda88;
+      transform: translateY(-2px);
+    }
+    .logo {
+      color: white;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: -0.3px;
+      background: rgba(255,255,240,0.12);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropbtn {
+      background: rgba(255,255,240,0.12);
+      backdrop-filter: blur(4px);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dropbtn:hover {
+      background: #f7c35c;
+      color: #1a3a32;
+      transform: translateY(-2px);
+    }
+    .dropdown-content {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: white;
+      min-width: 270px;
+      max-height: 70vh;
+      overflow-y: auto;
+      border-radius: 24px;
+      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.25);
+      z-index: 200;
+      border: 1px solid #cfdfd9;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.2s ease, visibility 0.2s, transform 0.2s;
+      pointer-events: none;
+    }
+    .dropdown-content.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .dropdown-content a {
+      color: #1f4e3f;
+      padding: 12px 18px;
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+      border-bottom: 1px solid #e9f0ec;
+      transition: 0.1s;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .dropdown-content a:hover {
+      background: #e1f3ec;
+      color: #0b442e;
+      padding-left: 24px;
+    }
+    .search-section {
+      max-width: 800px;
+      margin: 1.5rem auto 1.2rem auto;
+      padding: 0 1rem;
+    }
+    .search-wrapper {
+      display: flex;
+      gap: 12px;
+      background: white;
+      border-radius: 80px;
+      padding: 0.3rem 0.3rem 0.3rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid #cfdfd9;
+    }
+    .search-wrapper input {
+      flex: 1;
+      padding: 0.9rem 0;
+      border: none;
+      font-size: 1rem;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+    }
+    .search-wrapper button {
+      background: #2c9b6e;
+      border: none;
+      padding: 0 1.5rem;
+      border-radius: 60px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .search-wrapper button:hover {
+      background: #1f6e43;
+    }
+    .main-container {
+      max-width: 1300px;
+      margin: 0 auto 2rem auto;
+      padding: 0 1rem;
+    }
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+      background: rgba(255,255,245,0.8);
+      backdrop-filter: blur(2px);
+      padding: 0.8rem 1.5rem;
+      border-radius: 60px;
+    }
+    .result-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a5e4c;
+    }
+    .member-count-badge {
+      background: #cbe6dd;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      color: #15593f;
+    }
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 16px;
+    }
+    .member-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1rem 1.4rem;
+      transition: all 0.2s;
+      border: 1px solid #dee9e3;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .member-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px -12px rgba(0, 0, 0, 0.12);
+      border-color: #bcd9cf;
+    }
+    .member-icon {
+      font-size: 1.8rem;
+    }
+    .member-info {
+      flex: 1;
+    }
+    .member-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1e3e34;
+      word-break: break-word;
+    }
+    .member-position {
+      font-size: 0.7rem;
+      background: #eef3f0;
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      margin-top: 6px;
+      color: #2c7a60;
+      font-weight: 500;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 3rem;
+      background: white;
+      border-radius: 32px;
+      color: #789b8c;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      color: #4b7865;
+      border-top: 1px solid #cde0d8;
+      margin-top: 1rem;
+    }
+    @media (max-width: 680px) {
+      .navbar {
+        padding: 0.7rem 1rem;
+      }
+      .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .logo-area {
+        justify-content: space-between;
+      }
+      .dropbtn {
+        width: 100%;
+        justify-content: center;
+      }
+      .dropdown-content {
+        left: 0;
+        width: 100%;
+        min-width: unset;
+      }
+      .member-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo-area">
+      <div class="logo">📋 সংগঠন কমিটি</div>
+      <button id="homeButton" class="home-btn">🏠 হোম / সকল সদস্য</button>
+    </div>
+    <div class="dropdown" id="dropdownContainer">
+      <button class="dropbtn" id="dropdownBtn">☰ পদবি মেনু ▼</button>
+      <div class="dropdown-content" id="dynamicDropdown"></div>
+    </div>
+  </div>
+</nav>
+
+<div class="search-section">
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="🔍 নাম লিখুন (যেমন: মোশিউর, রোমান, ইমরান)" autocomplete="off">
+    <button id="searchBtn">খুঁজুন</button>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="result-header">
+    <h2 id="categoryTitle">সকল সদস্য</h2>
+    <div class="member-count-badge" id="memberCountBadge">লোড হচ্ছে...</div>
+  </div>
+  <div id="membersContainer" class="member-grid"></div>
+</div>
+<footer>সর্বশেষ আপডেটেড তালিকা | মোট সদস্য: <span id="totalMembersCount">0</span> জন</footer>
+
+<script>
+  // ==============================================================
+  // সম্পূর্ণ আপডেটেড কমিটি ডেটা (নতুন তালিকা অনুযায়ী)
+  // ==============================================================
+  const committeeData = [
+    { position: "সভাপতি", name: "মোঃ মোশিউর রহমান সরকার বাবু" },
+    { position: "সহ-সভাপতি", name: "রোমান দেওয়ান" },
+    { position: "সহ-সভাপতি", name: "হুমায়ুন কবির" },
+    { position: "সহ-সভাপতি", name: "মোঃ আশরাফুল আলম" },
+    { position: "সহ-সভাপতি", name: "মোঃ ইলিয়াছ রুমন" },
+    { position: "সহ-সভাপতি", name: "মোঃ মেহেদী হাসান রাসেল" },
+    { position: "সহ-সভাপতি", name: "কাজী আশরাফ রকিব" },
+    { position: "সহ-সভাপতি", name: "মোঃ মেহেদী হাসান বাবু" },
+    { position: "সহ-সভাপতি", name: "জামান সরকার" },
+    { position: "সহ-সভাপতি", name: "মোঃ আরাফাত রহমান মোল্লা মিরাজ" },
+    { position: "সহ-সভাপতি", name: "মনিরুল ইসলাম মজুমদার (রানা)" },
+    { position: "সহ-সভাপতি", name: "পাপেল মাহমুদ" },
+    { position: "সহ-সভাপতি", name: "মাহিদুর রহমান আকন্দ রিমেল" },
+    { position: "সহ-সভাপতি", name: "মোঃ জাহাঙ্গীর আলম" },
+    { position: "সহ-সভাপতি", name: "আরিফ মোল্লা" },
+    { position: "সহ-সভাপতি", name: "জাহিদ আহসান নয়ন" },
+    { position: "সহ-সভাপতি", name: "মোঃ জুয়েল হোসেন জয়" },
+    { position: "সহ-সভাপতি", name: "মাহফুজুর রহমান নাঈম" },
+    { position: "সহ-সভাপতি", name: "মোঃ মানিক হোসেন" },
+    { position: "সহ-সভাপতি", name: "মোঃ ফেরদৌস আহমেদ" },
+    { position: "সহ-সভাপতি", name: "তারেক হাওলাদার" },
+    { position: "সহ-সভাপতি", name: "মোঃ মশিউর হক নাহিন প্রধান" },
+    { position: "সহ-সভাপতি", name: "আরিফ ইবনে শামস্ শান্ত" },
+    { position: "সহ-সভাপতি", name: "মোঃ তারেক" },
+    { position: "সহ-সভাপতি", name: "আব্দুল্লাহ আল রাফি" },
+    { position: "সহ-সভাপতি", name: "জীবন সরদার" },
+    { position: "সহ-সভাপতি", name: "রবিউল ইসলাম (টঙ্গী)" },
+    { position: "সহ-সভাপতি", name: "বি. পি. রিপন আহমেদ" },
+    { position: "সহ-সভাপতি", name: "আব্দুল্লাহ আল মামুন সজল" },
+    { position: "সহ-সভাপতি", name: "মোঃ আসাদ শিকদার" },
+    { position: "সহ-সভাপতি", name: "সাইফ ইয়াসিন গায়েন" },
+    { position: "সহ-সভাপতি", name: "মোঃ ইমরানুল ইসলাম সুমন" },
+    { position: "সহ-সভাপতি", name: "নূর আলম হিমেল" },
+    { position: "সহ-সভাপতি", name: "মিনহাজুল ইসলাম" },
+    { position: "সহ-সভাপতি", name: "লিখন মিয়া" },
+    { position: "সহ-সভাপতি", name: "মিনহাজুল ইসলাম মিরাজ" },
+    { position: "সহ-সভাপতি", name: "মোঃ সোহাগ হোসেন জীবন" },
+    { position: "সহ-সভাপতি", name: "মোঃ মিজানুর রহমান মিঠু" },
+    { position: "সহ-সভাপতি", name: "নাহিন মোল্লা" },
+    { position: "সহ-সভাপতি", name: "অপু মিত্র যুবরাজ" },
+    { position: "সহ-সভাপতি", name: "মোঃ মিলন হোসেন" },
+    { position: "সহ-সভাপতি", name: "হিরন মিয়া" },
+    { position: "সহ-সভাপতি", name: "মোঃ আসাদুজ্জামান শাওন" },
+    { position: "সহ-সভাপতি", name: "রানা সরকার" },
+    { position: "সহ-সভাপতি", name: "শাহাদাৎ হোসেন" },
+    { position: "সহ-সভাপতি", name: "পলাশ কুমার প্রান্ত" },
+    { position: "সহ-সভাপতি", name: "নাজমুল ইসলাম" },
+    { position: "সহ-সভাপতি", name: "এ.বি সিদ্দিক" },
+    { position: "সহ-সভাপতি", name: "মোঃ রাসেল" },
+    { position: "সহ-সভাপতি", name: "মোঃ মামুন হোসেন" },
+    { position: "সহ-সভাপতি", name: "মোশাররফ বন্দুকশী" },
+    { position: "সহ-সভাপতি", name: "অনিক ইসলাম আফজাল" },
+    { position: "সহ-সভাপতি", name: "খায়রুল আলম শুভ" },
+    { position: "সহ-সভাপতি", name: "মোঃ মনসুর হাবিব শুভ" },
+    { position: "সহ-সভাপতি", name: "জাহিদুল ইসলাম সরকার জয়" },
+    { position: "সহ-সভাপতি", name: "অপু মন্ডল" },
+    { position: "সহ-সভাপতি", name: "রফিকুল ইসলাম ফিরোজ সরদার" },
+    { position: "সহ-সভাপতি", name: "মোঃ রাশিদুল ইসলাম (কাউলতিয়া)" },
+    { position: "সহ-সভাপতি", name: "আসাদুর রহমান অন্তু" },
+    { position: "সহ-সভাপতি", name: "রাফাতুল ইসলাম রিফাত" },
+    { position: "সহ-সভাপতি", name: "মোঃ সজীব ভূঁইয়া" },
+    { position: "সহ-সভাপতি", name: "মোঃ জামান খান" },
+    { position: "সহ-সভাপতি", name: "এ. আর. রায়হান আহমেদ প্রান্ত" },
+    { position: "সহ-সভাপতি", name: "সাজ্জাদুর রহমান ইমন" },
+    { position: "সহ-সভাপতি", name: "মোঃ শামীম সরকার" },
+    { position: "সহ-সভাপতি", name: "কাজী রাইসুল রহমান সাজিদ" },
+    { position: "সহ-সভাপতি", name: "সাজিদ হোসেন সবুজ" },
+    { position: "সহ-সভাপতি", name: "মোঃ আরিফ আরমান নিপু" },
+    { position: "সহ-সভাপতি", name: "মোঃ মোবারক হোসেন" },
+    { position: "সহ-সভাপতি", name: "মোঃ মেহেদী হাসান" },
+    { position: "সহ-সভাপতি", name: "সারোয়ার হোসেন খান প্রান্ত" },
+    { position: "সহ-সভাপতি", name: "মোঃ তাওহীদুল ইসলাম সোহাগ সরকার" },
+    { position: "সহ-সভাপতি", name: "মোঃ নাজমুল খন্দকার" },
+    { position: "সহ-সভাপতি", name: "মোঃ শাকিল হোসেন" },
+    { position: "সহ-সভাপতি", name: "কাজী আজহার উদ্দিন সৌরভ" },
+    { position: "সহ-সভাপতি", name: "জোবাইদুল ইসলাম শিমন" },
+    { position: "সহ-সভাপতি", name: "সাব্বির হোসেন অয়ন" },
+    { position: "সহ-সভাপতি", name: "নাইমুর রহমান অনিক" },
+    { position: "সহ-সভাপতি", name: "তৌকিরুল ইসলাম" },
+    { position: "সহ-সভাপতি", name: "মোঃ স্বপন মৃধা" },
+    { position: "সহ-সভাপতি", name: "সানজিদা হক" },
+    { position: "সহ-সভাপতি", name: "আহমেদ শিহাব সিদ্দিকী" },
+    { position: "সহ-সভাপতি", name: "আসিফ মৃধা" },
+    { position: "সহ-সভাপতি", name: "মোঃ মাসুম আহমেদ দিপু" },
+    { position: "সহ-সভাপতি", name: "মোঃ সাদ্দাম হোসেন খান" },
+    { position: "সহ-সভাপতি", name: "মোঃ শামীম হোসেন" },
+    { position: "সহ-সভাপতি", name: "আমিনুল ইসলাম তুহিন" },
+    { position: "সহ-সভাপতি", name: "মোঃ ইব্রাহিম সানি" },
+    { position: "সহ-সভাপতি", name: "আসাদুজ্জামন ববি" },
+    { position: "সহ-সভাপতি", name: "মোঃ তালিম হোসেন আকঞ্জি" },
+    { position: "সহ-সভাপতি", name: "মোঃ জসিম উদ্দিন" },
+    { position: "সহ-সভাপতি", name: "শামীম আহমেদ সোনা" },
+    { position: "সহ-সভাপতি", name: "মোঃ আবু বকর ইসলাম সেলিম" },
+    { position: "সহ-সভাপতি", name: "মাহমুদুল হাসান শাহিন" },
+    { position: "সহ-সভাপতি", name: "মোঃ মোমিন উদ্দিন খান সজীব" },
+    { position: "সহ-সভাপতি", name: "নাজমুল হোসাইন" },
+    { position: "সহ-সভাপতি", name: "আব্দুর রহমান জুনায়েত" },
+    { position: "সহ-সভাপতি", name: "মোঃ রাকিবুর রহমান হৃদয়" },
+    { position: "সহ-সভাপতি", name: "মেহেদী হাসান মুন্না" },
+    { position: "সহ-সভাপতি", name: "ইয়াসিন আরাফাত সোহান" },
+    { position: "সহ-সভাপতি", name: "আমির হোসেন" },
+    { position: "সহ-সভাপতি", name: "ফজলে রাব্বি ওয়াহিদ" },
+    { position: "সহ-সভাপতি", name: "মীর শহিদুজ্জামান" },
+    { position: "সহ-সভাপতি", name: "রিফাত" },
+    { position: "সহ-সভাপতি", name: "মোঃ শাহিন আলম" },
+    { position: "সহ-সভাপতি", name: "নাসির উদ্দিন শুভ" },
+    { position: "সাধারণ সম্পাদক", name: "শেখ মোস্তাক আহমেদ কাজল" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "এস. এম. মেরাজুর রহমান স্বাধীন" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "কামরুল ইসলাম শাকিল" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "আরিফুর রহমান টিটু" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "আলিফ রহমান" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "সোহানুর রহমান শোভন" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "তাসনীম মাহমুদ সরকার" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "সাখাওয়াত হোসেন সুজন" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "মোঃ জুবায়ের ইসলাম" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "মিরাজুর রহমান রায়হান" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "মোঃ শাহাদাৎ হোসেন" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "মোঃ রবিউল আলম (গাছা)" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "শরিফুল ইসলাম টিপু" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "মোঃ শাহরিয়ার সিফাত" },
+    { position: "যুগ্ম সাধারণ সম্পাদক", name: "মোঃ রফিকুল ইসলাম সুমন মোল্লা" },
+    { position: "সাংগঠনিক সম্পাদক", name: "শাহরিয়ার আমিন তিরযী" },
+    { position: "সাংগঠনিক সম্পাদক", name: "সারোয়ার হোসেন রনি" },
+    { position: "সাংগঠনিক সম্পাদক", name: "মোঃ রবিন সরদার" },
+    { position: "সাংগঠনিক সম্পাদক", name: "তামজিদুল ইসলাম তামিম" },
+    { position: "সাংগঠনিক সম্পাদক", name: "শ্রাবণ বেপারি অপু" },
+    { position: "সাংগঠনিক সম্পাদক", name: "জাহিদুল ইসলাম মায়া" },
+    { position: "সাংগঠনিক সম্পাদক", name: "খন্দকার পিয়াস" },
+    { position: "সাংগঠনিক সম্পাদক", name: "নাজমুল হাসান প্রলয়" },
+    { position: "সাংগঠনিক সম্পাদক", name: "মোঃ আমিনুল তাজ মন্ডল" },
+    { position: "সাংগঠনিক সম্পাদক", name: "মোঃ সাজ্জাদ আমিন খান সুজয়" },
+    { position: "সাংগঠনিক সম্পাদক", name: "ইশরাত জাহান আঁখি" },
+    { position: "সাংগঠনিক সম্পাদক", name: "রাশিদুল ইসলাম" },
+    { position: "সাংগঠনিক সম্পাদক", name: "শাহরিয়ার সরকার রিজভী" },
+    { position: "সাংগঠনিক সম্পাদক", name: "শামীম আহমেদ রনি" },
+    { position: "প্রচার সম্পাদক", name: "কাউসার আহমেদ টিপু" },
+    { position: "উপ-প্রচার সম্পাদক", name: "মোঃ মহিউদ্দিন সোহাগ মৃধা" },
+    { position: "উপ-প্রচার সম্পাদক", name: "মোঃ মৃদুল হোসেন" },
+    { position: "উপ-প্রচার সম্পাদক", name: "সাকিন ইসলাম" },
+    { position: "দপ্তর সম্পাদক", name: "মোঃ মুমিনুল ইসলাম সাফিন" },
+    { position: "উপ-দপ্তর সম্পাদক", name: "আলী আশরাফ চৌধুরী" },
+    { position: "উপ-দপ্তর সম্পাদক", name: "শেখ রিফাত আহামেদ" },
+    { position: "উপ-দপ্তর সম্পাদক", name: "মোঃ মেহেদী হাসান নাঈম" },
+    { position: "গ্রন্থনা ও প্রকাশনা বিষয়ক সম্পাদক", name: "জামিল হাসান সৌমিক" },
+    { position: "উপ-গ্রন্থনা ও প্রকাশনা বিষয়ক সম্পাদক", name: "মোঃ মনির হোসেন" },
+    { position: "উপ-গ্রন্থনা ও প্রকাশনা বিষয়ক সম্পাদক", name: "নাজমুল ইসলাম সুমন" },
+    { position: "উপ-গ্রন্থনা ও প্রকাশনা বিষয়ক সম্পাদক", name: "মোঃ শাকিল আহমেদ" },
+    { position: "শিক্ষা ও পাঠচক্র সম্পাদক", name: "ইশতিয়াক অন্তু হাওলাদার" },
+    { position: "উপ-শিক্ষা ও পাঠচক্র সম্পাদক", name: "মামুন আহমেদ মুন্না" },
+    { position: "উপ-শিক্ষা ও পাঠচক্র সম্পাদক", name: "মোহাম্মদ ফারুক" },
+    { position: "ক্রীড়া সম্পাদক", name: "মো: রেজনুল ইসলাম" },
+    { position: "উপ-ক্রীড়া সম্পাদক", name: "মোঃ আমান উল্লাহ" },
+    { position: "উপ-ক্রীড়া সম্পাদক", name: "মুরাদ মাহবুব শাকিল" },
+    { position: "উপ-ক্রীড়া সম্পাদক", name: "জাহিদ ইবনে সাবিত" },
+    { position: "সমাজ সেবা বিষয়ক সম্পাদক", name: "মোঃ শাহীন ইসলাম" },
+    { position: "উপ-সমাজ সেবা বিষয়ক সম্পাদক", name: "মেহেদী হাসান বিজয়" },
+    { position: "উপ-সমাজ সেবা বিষয়ক সম্পাদক", name: "মোঃ রাকিবুল হাসান রাব্বী" },
+    { position: "উপ-সমাজ সেবা বিষয়ক সম্পাদক", name: "অর্নব দত্ত" },
+    { position: "সাংস্কৃতিক বিষয়ক সম্পাদক", name: "মোঃ হিমেল সরকার" },
+    { position: "উপ-সাংস্কৃতিক বিষয়ক সম্পাদক", name: "ইমরান মাসুম হৃদি" },
+    { position: "উপ-সাংস্কৃতিক বিষয়ক সম্পাদক", name: "সিফাতুল ইসলাম বাঁধন" },
+    { position: "উপ-সাংস্কৃতিক বিষয়ক সম্পাদক", name: "ইয়াসিন আরাফাত সামি" },
+    { position: "আন্তর্জাতিক বিষয়ক সম্পাদক", name: "শিশির আহাম্মেদ অনিক" },
+    { position: "উপ-আন্তর্জাতিক বিষয়ক সম্পাদক", name: "জুয়েল মিয়া" },
+    { position: "উপ-আন্তর্জাতিক বিষয়ক সম্পাদক", name: "সিয়াম হাওলাদার" },
+    { position: "প্রশিক্ষণ বিষয়ক সম্পাদক", name: "মোঃ রাকিব সরকার" },
+    { position: "উপ-প্রশিক্ষণ বিষয়ক সম্পাদক", name: "একরাম হোসেন রাজিব" },
+    { position: "উপ-প্রশিক্ষণ বিষয়ক সম্পাদক", name: "মোস্তফা হোসেন ইমন" },
+    { position: "পাঠাগার বিষয়ক সম্পাদক", name: "মোঃ মেহেদী হাসান সাব্বির" },
+    { position: "উপ-পাঠাগার বিষয়ক সম্পাদক", name: "মোঃ আবু রায়হান মৃধা তুহিন" },
+    { position: "উপ-পাঠাগার বিষয়ক সম্পাদক", name: "সিফাত বিন আজাদ" },
+    { position: "তথ্য ও গবেষণা বিষয়ক সম্পাদক", name: "আশিক ইসলাম অভি" },
+    { position: "উপ-তথ্য ও গবেষণা বিষয়ক সম্পাদক", name: "নাইমুর রহমান সিয়াম" },
+    { position: "ছাত্রী বিষয়ক সম্পাদক", name: "সুমাইয়া আক্তার" },
+    { position: "উপ-ছাত্রী বিষয়ক সম্পাদক", name: "নিতু ইসলাম" },
+    { position: "উপ-ছাত্রী বিষয়ক সম্পাদক", name: "সুমাইয়া আলম" },
+    { position: "উপ-ছাত্রী বিষয়ক সম্পাদক", name: "নুসরাত জাহান মিম" },
+    { position: "অর্থ বিষয়ক সম্পাদক", name: "মেহেদী হাসান রায়হান" },
+    { position: "উপ-অর্থ বিষয়ক সম্পাদক", name: "অয়ন ইসলাম ইমন শিকদার" },
+    { position: "উপ-অর্থ বিষয়ক সম্পাদক", name: "মোহাম্মদ সাজ্জাদ পাঠান" },
+    { position: "উপ-অর্থ বিষয়ক সম্পাদক", name: "আব্দুল্লাহ আলফি রিমন" },
+    { position: "আইন বিষয়ক সম্পাদক", name: "রাব্বী আরাফাত সংগ্রাম" },
+    { position: "উপ-আইন বিষয়ক সম্পাদক", name: "শামসুল ইসলাম অনিক" },
+    { position: "উপ-আইন বিষয়ক সম্পাদক", name: "মোঃ ফারদিন খান" },
+    { position: "পরিবেশ বিষয়ক সম্পাদক", name: "শ্রাবন খান মমিন" },
+    { position: "উপ-পরিবেশ বিষয়ক সম্পাদক", name: "মোঃ ইয়াসিন হাওলাদার" },
+    { position: "উপ-পরিবেশ বিষয়ক সম্পাদক", name: "মোঃ হাসান আল পিঞ্জয়" },
+    { position: "উপ-পরিবেশ বিষয়ক সম্পাদক", name: "মোঃ আশিকুর রহমান ফাহিম দেওয়ান" },
+    { position: "স্কুল ছাত্র বিষয়ক সম্পাদক", name: "সাব্বির হোসেন হৃদয়" },
+    { position: "উপ-স্কুল ছাত্র বিষয়ক সম্পাদক", name: "মোঃ মাসুদ রানা" },
+    { position: "উপ-স্কুল ছাত্র বিষয়ক সম্পাদক", name: "মোঃ আমিনুল ইসলাম ইমন" },
+    { position: "উপ-স্কুল ছাত্র বিষয়ক সম্পাদক", name: "মোঃ জাহিদুল হাসান" },
+    { position: "বিজ্ঞান ও তথ্য প্রযুক্তি বিষয়ক সম্পাদক", name: "মোঃ মাজহারুল ইসলাম ইমন" },
+    { position: "উপ-বিজ্ঞান ও তথ্য প্রযুক্তি বিষয়ক সম্পাদক", name: "মোঃ ফয়সাল হোসেন নাঈম" },
+    { position: "উপ-বিজ্ঞান ও তথ্য প্রযুক্তি বিষয়ক সম্পাদক", name: "বখতিয়ার হোসাইন শুভ" },
+    { position: "ধর্ম বিষয়ক সম্পাদক", name: "মোঃ মাসুম খান" },
+    { position: "উপ-ধর্ম বিষয়ক সম্পাদক", name: "শান্ত রায়" },
+    { position: "উপ-ধর্ম বিষয়ক সম্পাদক", name: "মোঃ ইয়াসিন আরাফাত" },
+    { position: "উপ-ধর্ম বিষয়ক সম্পাদক", name: "মোঃ আকাশ আহমেদ পলক" },
+    { position: "মাদ্রাসা শিক্ষা বিষয়ক সম্পাদক", name: "শিব্বির আহমেদ" },
+    { position: "উপ-মাদ্রাসা শিক্ষা বিষয়ক সম্পাদক", name: "রাকিবুল ইসলাম অপু" },
+    { position: "গণ শিক্ষা বিষয়ক সম্পাদক", name: "মোঃ অনিক সরকার" },
+    { position: "উপ-গণ শিক্ষা বিষয়ক সম্পাদক", name: "নিতুন সাহা রায়" },
+    { position: "ত্রাণ ও দূর্যোগ বিষয়ক সম্পাদক", name: "শেখ মেহেদী হাসান প্রান্ত" },
+    { position: "উপ-ত্রাণ ও দূর্যোগ বিষয়ক সম্পাদক", name: "সাদমান শাহরিয়ার সৌমিক" },
+    { position: "উপ-ত্রাণ ও দূর্যোগ বিষয়ক সম্পাদক", name: "হাবিবুর রহমান সম্রাট" },
+    { position: "উপ-ত্রাণ ও দূর্যোগ বিষয়ক সম্পাদক", name: "নাফিস হাসান আলিফ" },
+    { position: "সাহিত্য বিষয়ক সম্পাদক", name: "মোঃ জয় সরকার" },
+    { position: "উপ-সাহিত্য বিষয়ক সম্পাদক", name: "আব্দুল্লাহ আল মামুন" },
+    { position: "উপ-সাহিত্য বিষয়ক সম্পাদক", name: "মোঃ রোমান হোসেন" },
+    { position: "উপ-সাহিত্য বিষয়ক সম্পাদক", name: "মোঃ আল-আমিন" },
+    { position: "গণযোগাযোগ ও উন্নয়ন বিষয়ক সম্পাদক", name: "হৃদয় ঘোষ" },
+    { position: "উপ-গণযোগাযোগ ও উন্নয়ন বিষয়ক সম্পাদক", name: "মোঃ মাসুদ মিয়া" },
+    { position: "উপ-গণযোগাযোগ ও উন্নয়ন বিষয়ক সম্পাদক", name: "মোঃ মেহেদী হাসান অন্তর" },
+    { position: "উপ-গণযোগাযোগ ও উন্নয়ন বিষয়ক সম্পাদক", name: "মোঃ আমজাদ হোসেন আশিক সরকার" },
+    { position: "মানব সম্পদ বিষয়ক সম্পাদক", name: "মোঃ ফয়সাল প্রধান" },
+    { position: "উপ-মানব সম্পদ বিষয়ক সম্পাদক", name: "মোঃ সায়েম" },
+    { position: "উপ-মানব সম্পদ বিষয়ক সম্পাদক", name: "মোঃ আসিফ মাহমুদ অনিক" },
+    { position: "উপ-মানব সম্পদ বিষয়ক সম্পাদক", name: "আরিয়ান রাজ মান্না" },
+    { position: "নাট্য ও বিতর্ক বিষয়ক সম্পাদক", name: "শাহরিয়ার হাসান জয়" },
+    { position: "উপ-নাট্য ও বিতর্ক বিষয়ক সম্পাদক", name: "মোঃ আশিকুর রহমান" },
+    { position: "উপ-নাট্য ও বিতর্ক বিষয়ক সম্পাদক", name: "মোঃ তার্জ তানবীর লিছন" },
+    { position: "আপ্যায়ন বিষয়ক সম্পাদক", name: "আলভি হাসান" },
+    { position: "উপ-আপ্যায়ন বিষয়ক সম্পাদক", name: "মোঃ ইব্রাহীম হোসেন নিলয়" },
+    { position: "উপ-আপ্যায়ন বিষয়ক সম্পাদক", name: "ওমর সানি" },
+    { position: "উপ-আপ্যায়ন বিষয়ক সম্পাদক", name: "ফরহাদ লস্কর" },
+    { position: "ছাত্র বৃত্তি বিষয়ক সম্পাদক", name: "নাঈম ইসলাম" },
+    { position: "উপ-ছাত্র বৃত্তি বিষয়ক সম্পাদক", name: "মোঃ সালাউদ্দিন সাহিল" },
+    { position: "উপ-ছাত্র বৃত্তি বিষয়ক সম্পাদক", name: "বিশাল হোসেন" },
+    { position: "উপ-ছাত্র বৃত্তি বিষয়ক সম্পাদক", name: "নাজমুল হাসান" },
+    { position: "কৃষি শিক্ষা বিষয়ক সম্পাদক", name: "আব্দুল্লাহ আল নোমান" },
+    { position: "উপ-কৃষি শিক্ষা বিষয়ক সম্পাদক", name: "মোঃ হৃদয় মিয়া" },
+    { position: "উপ-কৃষি শিক্ষা বিষয়ক সম্পাদক", name: "মাহমুদুল হাসান উজ্জল" },
+    { position: "উপ-কৃষি শিক্ষা বিষয়ক সম্পাদক", name: "মোঃ সজীব" },
+    { position: "মুক্তিযুদ্ধ ও গবেষণা বিষয়ক সম্পাদক", name: "রোবায়াত হোসেন তন্ময়" },
+    { position: "উপ-মুক্তিযুদ্ধ ও গবেষণা বিষয়ক সম্পাদক", name: "আব্দুল্লাহ আল সায়েম" },
+    { position: "উপ-মুক্তিযুদ্ধ ও গবেষণা বিষয়ক সম্পাদক", name: "আজহার মাহমুদ আসিফ" },
+    { position: "উপ-মুক্তিযুদ্ধ ও গবেষণা বিষয়ক সম্পাদক", name: "মোঃ আল রোমান বিজয়" },
+    { position: "উপ-অটিজম বিষয়ক সম্পাদক", name: "স্বাধীন বেপারী" },
+    { position: "উপ-অটিজম বিষয়ক সম্পাদক", name: "শুভ আহমেদ" },
+    { position: "উপ-অটিজম বিষয়ক সম্পাদক", name: "আতিক ইসলাম মিহির" },
+    { position: "মানবাধিকার বিষয়ক সম্পাদক", name: "মোঃ সোহানুর রহমান সোহান" },
+    { position: "উপ-মানবাধিকার বিষয়ক সম্পাদক", name: "সোহেল রানা" },
+    { position: "উপ-মানবাধিকার বিষয়ক সম্পাদক", name: "মোঃ আল আমিন ইসলাম" },
+    { position: "উপ-মানবাধিকার বিষয়ক সম্পাদক", name: "সাজিদুর রহমান" },
+    { position: "কর্মসূচী ও পরিকল্পনা বিষয়ক সম্পাদক", name: "মেরাজ হোসেন মুবিন চৌধুরী" },
+    { position: "উপ-কর্মসূচী ও পরিকল্পনা বিষয়ক সম্পাদক", name: "সুমন ইসলাম জয়" },
+    { position: "উপ-কর্মসূচী ও পরিকল্পনা বিষয়ক সম্পাদক", name: "রিয়াদ আহামেদ" },
+    { position: "উপ-কর্মসূচী ও পরিকল্পনা বিষয়ক সম্পাদক", name: "মোঃ সানজিদ হাসান" },
+    { position: "কারিগরি শিক্ষা বিষয়ক সম্পাদক", name: "মোঃ আফজাল হোসেন রনি" },
+    { position: "উপ-কারিগরি শিক্ষা বিষয়ক সম্পাদক", name: "শ্রী সুরঞ্জন দাস ইমন" },
+    { position: "উপ-কারিগরি শিক্ষা বিষয়ক সম্পাদক", name: "পার্থ কুমার রায়" },
+    { position: "উপ-কারিগরি শিক্ষা বিষয়ক সম্পাদক", name: "রাকিবুল ইসলাম রাকিব" },
+    { position: "ছাত্রী ও নারী উন্নয়ন বিষয়ক সম্পাদক", name: "বিউটি আক্তার" },
+    { position: "উপ-ছাত্রী ও নারী উন্নয়ন বিষয়ক সম্পাদক", name: "ইসরাত জাহান সিনথিয়া" },
+    { position: "উপ-ছাত্রী ও নারী উন্নয়ন বিষয়ক সম্পাদক", name: "সানজিদা আক্তার ঐশী" },
+    { position: "উপ-ছাত্রী ও নারী উন্নয়ন বিষয়ক সম্পাদক", name: "মুন্নি খাঁন আহির" },
+    { position: "উপ-টেকসই উন্নয়ন লক্ষ্য (SDG) সম্পাদক", name: "পারভেজ ঢালী" },
+    { position: "উপ-টেকসই উন্নয়ন লক্ষ্য (SDG) সম্পাদক", name: "শামীম হোসেন" },
+    { position: "উপ-টেকসই উন্নয়ন লক্ষ্য (SDG) সম্পাদক", name: "মোঃ আহমেদ শিহাব সিদ্দিক" },
+    { position: "উদ্যোক্তা ও উদ্ভাবন বিষয়ক সম্পাদক", name: "শেখ মিনহাজুল ইসলাম সুমন" },
+    { position: "উপ-উদ্যোক্তা ও উদ্ভাবন বিষয়ক সম্পাদক", name: "এস. এম. মুশফিক আলম জিদান" },
+    { position: "উপ-উদ্যোক্তা ও উদ্ভাবন বিষয়ক সম্পাদক", name: "শামসুল আলম শাহেদ" },
+    { position: "উপ-উদ্যোক্তা ও উদ্ভাবন বিষয়ক সম্পাদক", name: "রবিউল হাসান তন্ময়" },
+    { position: "সামাজিক যোগাযোগ মাধ্যম সম্পাদক", name: "নিশাত শামস্" },
+    { position: "উপ-সামাজিক যোগাযোগ মাধ্যম সম্পাদক", name: "মোঃ আদনান হোসেন" },
+    { position: "উপ-সামাজিক যোগাযোগ মাধ্যম সম্পাদক", name: "রকিবুল হাসান" },
+    { position: "উপ-সামাজিক যোগাযোগ মাধ্যম সম্পাদক", name: "ইরফান আহমেদ" },
+    { position: "সহ-সম্পাদক", name: "কাজী মারুফ হোসেন মিতুল" },
+    { position: "সহ-সম্পাদক", name: "মোঃ রেদওয়ান ইসলাম রূপম" },
+    { position: "সহ-সম্পাদক", name: "নাহিদ ইসলাম সৌরভ" },
+    { position: "সহ-সম্পাদক", name: "মোঃ জনি আহমেদ" },
+    { position: "সহ-সম্পাদক", name: "শাহরুখ মিয়া ইমন" },
+    { position: "সহ-সম্পাদক", name: "আব্দুল্লাহ আল আমিন আকন্দ হিমেল" },
+    { position: "সহ-সম্পাদক", name: "মোঃ সেলিম হোসেন" },
+    { position: "সহ-সম্পাদক", name: "শেখ মিনহাজ মাসুম" },
+    { position: "সহ-সম্পাদক", name: "তামিম হোসেন তন্ময়" },
+    { position: "সহ-সম্পাদক", name: "রিপন হোসেন" },
+    { position: "সহ-সম্পাদক", name: "মোঃ সাইফুল ইসলাম সাগর" },
+    { position: "সহ-সম্পাদক", name: "এনামুল হক ইমন" },
+    { position: "সহ-সম্পাদক", name: "তানভির আহমেদ মিরাজ" },
+    { position: "সহ-সম্পাদক", name: "মোঃ কালাম মৌলভী" },
+    { position: "সহ-সম্পাদক", name: "মোঃ কাউসার আহমেদ" },
+    { position: "সহ-সম্পাদক", name: "মোঃ গোলাম রাব্বি" },
+    { position: "সহ-সম্পাদক", name: "মোঃ রব্বানী" },
+    { position: "সহ-সম্পাদক", name: "রেজাউল হক শাফায়াত সরকার" },
+    { position: "সহ-সম্পাদক", name: "মোঃ মোয়াজ্জেম হোসেন রাসেল" },
+    { position: "সহ-সম্পাদক", name: "তানভীর আহমেদ সাব্বির" },
+    { position: "সহ-সম্পাদক", name: "মোঃ সানজিদ ইসলাম সিয়াম" },
+    { position: "সহ-সম্পাদক", name: "কাজী ওয়াদুদুর রহমান" },
+    { position: "সহ-সম্পাদক", name: "মোঃ শাহীন মিয়া" },
+    { position: "সহ-সম্পাদক", name: "মোঃ নাঈম হোসেন" },
+    { position: "সহ-সম্পাদক", name: "ফয়সাল রায়হান" },
+    { position: "সহ-সম্পাদক", name: "সাঈদ আহমেদ তামিম শিকদার" },
+    { position: "সহ-সম্পাদক", name: "রহমান মোল্লা হিমেল" },
+    { position: "সহ-সম্পাদক", name: "মেহেদী হাসান রাব্বি" },
+    { position: "সহ-সম্পাদক", name: "মোঃ আরাফাত হোসেন" },
+    { position: "সহ-সম্পাদক", name: "ঈশান কুমার বর্মন বাবু" },
+    { position: "সহ-সম্পাদক", name: "মো: সোলায়মান (স্বাধীন)" },
+    { position: "সহ-সম্পাদক", name: "মোঃ রাইসুল হাসান শান্ত" },
+    { position: "সহ-সম্পাদক", name: "মোঃ নাসির" },
+    { position: "সহ-সম্পাদক", name: "শহিদুল ইসলাম স্বাধীন" },
+    { position: "সহ-সম্পাদক", name: "রিয়াজুল ইসলাম রবিন (টঙ্গী)" },
+    { position: "সহ-সম্পাদক", name: "মোঃ মোস্তাকিম হোসেন জয়" },
+    { position: "সহ-সম্পাদক", name: "শুভ চন্দ্র দাস" },
+    { position: "সহ-সম্পাদক", name: "মোঃ রায়হান সর্দার" },
+    { position: "সহ-সম্পাদক", name: "অনন্ত দত্ত" },
+    { position: "সহ-সম্পাদক", name: "মোঃ শাকিল শিকদার" },
+    { position: "সহ-সম্পাদক", name: "কাউসার আহমেদ মিজি" },
+    { position: "সহ-সম্পাদক", name: "সাজ্জাদ হোসেন ফাহিম" },
+    { position: "সহ-সম্পাদক", name: "সাইফুল আলম সিয়াম" },
+    { position: "সহ-সম্পাদক", name: "রাসেল মন্ডল" },
+    { position: "সহ-সম্পাদক", name: "আব্দুল্লাহ আল মামুন" },
+    { position: "সহ-সম্পাদক", name: "মোঃ ইসমাইল হোসেন" },
+    { position: "সদস্য", name: "নাসিম খান তুহিন (মরণোত্তর)" },
+    { position: "সদস্য", name: "জাহিদুল ইসলাম অভি" },
+    { position: "সদস্য", name: "তাছনীম বিন সাঈদ বকুল" },
+    { position: "সদস্য", name: "নাঈম হোসেন" },
+    { position: "সদস্য", name: "আতিকুর রহমান আতিক" },
+    { position: "সদস্য", name: "কাজী তন্ময়" },
+    { position: "সদস্য", name: "মোঃ সোহান খান" },
+    { position: "সদস্য", name: "সজীব আহাম্মেদ শাওন" },
+    { position: "সদস্য", name: "সবুজ মিয়া" },
+    { position: "সদস্য", name: "মোঃ রাব্বি হাসান সাকিব" },
+    { position: "সদস্য", name: "মোঃ সজিব হোসেন" },
+    { position: "সদস্য", name: "মোঃ তুহিন আহমেদ" },
+    { position: "সদস্য", name: "আরাফাত হোসেন" },
+    { position: "সদস্য", name: "কাজী আসরাফুল ইসলাম" },
+    { position: "সদস্য", name: "রাফিন সরকার" },
+    { position: "সদস্য", name: "সাদাফ আহামেদ শিশির" },
+    { position: "সদস্য", name: "দেওয়ান ইউনুস" },
+    { position: "সদস্য", name: "মাহিম খান শান্ত" },
+    { position: "সদস্য", name: "মোঃ তোফায়েল আহমেদ" },
+    { position: "সদস্য", name: "রাকিবুল ইসলাম বিপুল" },
+    { position: "সদস্য", name: "ইসনান আহমেদ ইয়ামীম" },
+    { position: "সদস্য", name: "মাইদুল মন্ডল" },
+    { position: "সদস্য", name: "রাকিব আহমেদ রিজভী" },
+    { position: "সদস্য", name: "ইমরান হোসেন নিলয়" },
+    { position: "সদস্য", name: "মোঃ হাসিবুল হাসান" },
+    { position: "সদস্য", name: "মোঃ শফিকুল ইসলাম" },
+    { position: "সদস্য", name: "অর্য্য রায় দীপ্ত" },
+    { position: "সদস্য", name: "মোঃ জায়েদ‌উল আলম সানি" },
+    { position: "সদস্য", name: "মোঃ জাহিদুল ইসলাম" },
+    { position: "সদস্য", name: "মোঃ রিয়াদ খান" },
+    { position: "সদস্য", name: "মোঃ রনি ভূইয়া" },
+    { position: "সদস্য", name: "আশরাফুল ইসলাম আসিফ" },
+    { position: "সদস্য", name: "মাহমুদুল হাসান" }
+  ];
+
+  // ----- helper functions -----
+  function getAllPositions() {
+    const posMap = new Map();
+    committeeData.forEach(item => {
+      posMap.set(item.position, (posMap.get(item.position) || 0) + 1);
+    });
+    return Array.from(posMap.keys()).sort((a,b) => {
+      const order = ["সভাপতি", "সহ-সভাপতি", "সাধারণ সম্পাদক", "যুগ্ম সাধারণ সম্পাদক", "সাংগঠনিক সম্পাদক"];
+      let ia = order.indexOf(a), ib = order.indexOf(b);
+      if(ia !== -1 && ib !== -1) return ia - ib;
+      if(ia !== -1) return -1;
+      if(ib !== -1) return 1;
+      return a.localeCompare(b, 'bn');
+    });
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>]/g, function(m) {
+      if(m === '&') return '&amp;';
+      if(m === '<') return '&lt;';
+      if(m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  function renderMembers(members, title) {
+    const container = document.getElementById("membersContainer");
+    const titleElem = document.getElementById("categoryTitle");
+    const countSpan = document.getElementById("memberCountBadge");
+    if (!members.length) {
+      container.innerHTML = `<div class="empty-state">😔 কোন সদস্য পাওয়া যায়নি</div>`;
+      titleElem.innerText = title;
+      countSpan.innerText = `০ জন`;
+      return;
+    }
+    let html = "";
+    members.forEach(m => {
+      html += `
+        <div class="member-card">
+          <div class="member-icon">👤</div>
+          <div class="member-info">
+            <div class="member-name">${escapeHtml(m.name)}</div>
+            <div class="member-position">${escapeHtml(m.position)}</div>
+          </div>
+        </div>
+      `;
+    });
+    container.innerHTML = html;
+    titleElem.innerText = title;
+    countSpan.innerText = `${members.length} জন`;
+  }
+
+  // ---- dropdown logic ----
+  const dropdownBtn = document.getElementById("dropdownBtn");
+  const dropdownContent = document.getElementById("dynamicDropdown");
+  const dropdownContainerDiv = document.getElementById("dropdownContainer");
+
+  function openDropdown() { dropdownContent.classList.add("show"); }
+  function closeDropdown() { dropdownContent.classList.remove("show"); }
+  function toggleDropdown(e) {
+    e.stopPropagation();
+    if (dropdownContent.classList.contains("show")) closeDropdown();
+    else openDropdown();
+  }
+
+  document.addEventListener("click", function(event) {
+    if (!dropdownContainerDiv.contains(event.target)) closeDropdown();
+  });
+  dropdownContent.addEventListener("click", function(e) { e.stopPropagation(); });
+  dropdownBtn.addEventListener("click", toggleDropdown);
+
+  // ---- filter functions ----
+  function filterByPosition(position) {
+    const filtered = committeeData.filter(item => item.position === position);
+    renderMembers(filtered, `📌 ${position}`);
+    document.getElementById("searchInput").value = "";
+    closeDropdown();
+  }
+
+  function showAllMembers() {
+    renderMembers(committeeData, "সকল সদস্য");
+    document.getElementById("searchInput").value = "";
+    closeDropdown();
+  }
+
+  function searchByName() {
+    const query = document.getElementById("searchInput").value;
+    const q = query.trim().toLowerCase();
+    if (q === "") {
+      showAllMembers();
+      return;
+    }
+    const results = committeeData.filter(item => item.name.toLowerCase().includes(q));
+    if (results.length === 0) {
+      renderMembers([], `🔎 "${query}" - কোনো ফলাফল পাওয়া যায়নি`);
+    } else {
+      renderMembers(results, `🔎 "${query}" - ফলাফল (${results.length} জন)`);
+    }
+    closeDropdown();
+  }
+
+  // Build dropdown menu items
+  function buildDropdownMenu() {
+    const positions = getAllPositions();
+    dropdownContent.innerHTML = "";
+    positions.forEach(pos => {
+      const count = committeeData.filter(p => p.position === pos).length;
+      const link = document.createElement("a");
+      link.href = "#";
+      link.innerText = `${pos} (${count})`;
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        filterByPosition(pos);
+      });
+      dropdownContent.appendChild(link);
+    });
+    const allLink = document.createElement("a");
+    allLink.href = "#";
+    allLink.innerText = "📋 সকল সদস্য দেখুন";
+    allLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      showAllMembers();
+    });
+    dropdownContent.appendChild(allLink);
+  }
+
+  // ---- initial load ----
+  document.addEventListener("DOMContentLoaded", () => {
+    buildDropdownMenu();
+    showAllMembers();
+    document.getElementById("totalMembersCount").innerText = committeeData.length;
+
+    const homeBtn = document.getElementById("homeButton");
+    homeBtn.addEventListener("click", showAllMembers);
+
+    const searchBtn = document.getElementById("searchBtn");
+    const searchInput = document.getElementById("searchInput");
+    searchBtn.addEventListener("click", searchByName);
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") searchByName();
+    });
+  });
+</script>
+</body>
+</html>
+```
